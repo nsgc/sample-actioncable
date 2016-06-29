@@ -1,0 +1,8 @@
+<dl id="subject_<%= subject.id %>">
+  <dt><%= subject.name %></dt>
+  <dd><%= subject.body %></dd>
+  <dd>
+    <%= link_to 'Edit', subject_path(subject) %>
+    <%= link_to 'Delete', subject_path(subject), method: :delete, data: {confirm: 'A u sure?'} %>
+  </dd>
+</dl>

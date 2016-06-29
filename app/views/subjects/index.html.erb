@@ -1,0 +1,20 @@
+<%= form_tag '/sessions', method: :post do  %>
+  <%= select_tag 'user', options_from_collection_for_select(User.all, "id", "name") %>
+  <%= submit_tag 'ログイン' %>
+<% end %>
+
+<%= form_tag session_path(1), method: :delete do  %>
+  <%= submit_tag 'ログアウト' %>
+<% end %>
+
+<p id="notice"><%= notice %></p>
+
+<h1>Subjects</h1>
+
+<dl id='subjects'>
+  <%= render @subjects %>
+</dl>
+
+<br>
+
+<%= link_to 'New Subject', new_subject_path %>
