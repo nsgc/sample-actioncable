@@ -15,6 +15,23 @@
   <%= render @subjects %>
 </dl>
 
+<button type='button' id='list'>リストを取得</button>
+
 <br>
 
 <%= link_to 'New Subject', new_subject_path %>
+
+<script>
+  $(function(){
+    $('#list').click(function () {
+      $.getJSON('/subjects/list', function( data ) {
+        var items = [];
+        $.each( data, function( key, val ) {
+          items.push( "<dl id='subject_" + val['id'] + "'><dt>" + val['name'] + "</dt><dd>" + val['body'] + "</dd><dd><a href='/subjects/" + val['id'] +"'>Edit</a><a data-confirm='A u sure?' rel='nofollow' data-method='delete' href='/subjects/" +val['id']+ "'>Delete</a></dd></dl>" );
+        });
+
+        $("dl#subjects").append(items.join( "" ));
+      });
+    });
+  });
+</script>

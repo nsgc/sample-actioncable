@@ -4,7 +4,11 @@ class SubjectsController < ApplicationController
   # GET /subjects
   # GET /subjects.json
   def index
-    @subjects = Subject.all
+    @subjects = Subject.limit(5)
+  end
+
+  def list
+    render json: Subject.limit(5).offset(5).to_json
   end
 
   # GET /subjects/1
